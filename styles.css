@@ -1,0 +1,505 @@
+:root {
+    --primary: #0a0a0a;
+    --secondary: #1DB954;
+    --accent: #0c4214;
+    --text: #FFFFFF;
+    --card-bg: rgba(30, 30, 30, 0.7);
+    --glow: 0 0 20px rgba(30, 215, 96, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--primary);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(30, 215, 96, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 90% 80%, rgba(255, 85, 0, 0.05) 0%, transparent 25%);
+    overflow-x: hidden;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+/*-----------------------------------------------------------*/
+
+/* ---------------------------------------------------------- */
+
+.rapper-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem; /* Smaller gap */
+    margin: 2rem auto;
+    max-width: 95%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    justify-items: center;
+}
+
+.rapper-card {
+    width: 300px;
+    height: 400px;
+    background: rgba(20, 20, 20, 0.5);
+    border-radius: 20px; /* Slightly smaller radius */
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    box-shadow: 0 8px 5px rgba(0, 0, 0, 0.5); /* Smaller shadow */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* backdrop-filter: blur(3px);   */
+    margin: 0;
+    margin-bottom: 20px;
+
+}
+
+
+
+
+/* Add these to your existing CSS */
+/* .rapper-card {
+    position: relative;
+    overflow: hidden;
+} */
+
+/* ************************************************************************************* */
+
+.rapper-card:hover {
+    animation: pulseGlow 2s infinite alternate;
+    transform: translateY(-10px) scale(1.02);
+}
+
+.rapper-card:hover .platform-icon {
+    animation: floatUp 1s ease-in-out infinite alternate;
+}
+
+.rapper-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--secondary), var(--accent));
+    z-index: 3;
+}
+
+.rapper-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        transparent 45%,
+        var(--secondary),
+        transparent 55%
+    );
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: all 0.6s ease;
+    z-index: 1;
+}
+
+.rapper-card:hover::after {
+    animation: borderFlow 3s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 8px 5px rgba(0, 0, 0, 0.5), var(--glow); }
+    100% { box-shadow: 0 8px 5px rgba(0, 0, 0, 0.5), 0 0 30px rgba(30, 215, 96, 0.8); }
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-8px) scale(1.1); }
+}
+
+@keyframes borderFlow {
+    0% { transform: rotate(45deg) translate(-30%, -30%); }
+    100% { transform: rotate(45deg) translate(30%, 30%); }
+}
+
+/* Stagger platform icon animations */
+.rapper-card:hover .platform-icon:nth-child(1) { animation-delay: 0.1s; }
+.rapper-card:hover .platform-icon:nth-child(2) { animation-delay: 0.2s; }
+.rapper-card:hover .platform-icon:nth-child(3) { animation-delay: 0.3s; }
+.rapper-card:hover .platform-icon:nth-child(4) { animation-delay: 0.4s; }
+
+
+
+
+/* .rapper-card:hover .platform-icon {
+    animation: floatUp 1s ease-in-out infinite alternate;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Stagger the animations */
+/* .rapper-card:hover .platform-icon:nth-child(1) { animation-delay: 0.1s; }
+.rapper-card:hover .platform-icon:nth-child(2) { animation-delay: 0.2s; }
+.rapper-card:hover .platform-icon:nth-child(3) { animation-delay: 0.3s; }
+.rapper-card:hover .platform-icon:nth-child(4) { animation-delay: 0.4s; } */
+
+
+
+.rapper-image-container {
+    height: 180px; /* Smaller image area */
+    margin: 15px 15px 10px 15px; /* Tighter margins */
+    border-radius: 10px;
+}
+
+.rapper-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+    border-radius: 8px;
+}
+
+.rapper-card:hover .rapper-image {
+    transform: scale(1.05);
+}
+
+.rapper-info {
+    padding: 1rem; /* Less padding */
+    height: calc(100% - 205px); /* Adjusted for new image height */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Consistent spacing */
+}
+
+.rapper-name {
+    font-size: 1.4rem; /* Smaller font */
+    margin-bottom: 0; /* Removed margin */
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.5px;
+    position: relative;
+    display: inline-block;
+}
+
+.rapper-name::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px; /* Shorter underline */
+    height: 2px; /* Thinner underline */
+    background: linear-gradient(90deg, var(--secondary), var(--accent));
+    border-radius: 3px;
+}
+
+.rapper-genre {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 8px;
+    width: fit-content; /* This makes the width match the content */
+    min-width: 50px; /* Optional: prevents it from being too narrow */
+    text-align: center; /* Centers the text within the bubble */
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.platforms {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+    /* Add these lines: */
+    z-index: 2;
+    position: relative;
+}
+
+.platform-icon {
+    font-size: 1.4rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0.8;
+    /* Add these properties: */
+    display: inline-block;
+    /* padding: 5px; */
+    position: relative;
+    z-index: 3; /* Ensures icons stay above other elements */
+}
+
+/* Remove any pointer-events: none from parent elements */
+.rapper-card * {
+    pointer-events: auto;
+}
+
+.platform-icon:hover {
+    transform: translateY(-3px) scale(1.15); /* Smaller hover effect */
+    opacity: 1;
+}
+
+/* Keep all your existing platform color classes */
+.spotify { color: #1DB954; }
+.apple { color: #FC3C44; }
+.youtube { color: #FF0000; }
+.instagram { color: #E1306C; }
+.twitter { color: #1DA1F2; }
+.tiktok { color: #00F2EA; }
+.soundcloud { color: #FF8800; }
+.amazon { color: #00A8E1; }
+
+.floating-icons {
+    position: fixed;
+    bottom: 1.5rem; /* Smaller margin */
+    right: 1.5rem; /* Smaller margin */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Smaller gap */
+    z-index: 100;
+}
+
+.floating-icon {
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    width: 50px; /* Smaller button */
+    height: 50px; /* Smaller button */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem; /* Smaller icon */
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(30, 215, 96, 0.5); /* Smaller shadow */
+    color: white;
+    border: none;
+    outline: none;
+}
+
+.floating-icon:hover {
+    transform: scale(1.1) rotate(8deg); /* Smaller rotation */
+    box-shadow: 0 6px 20px rgba(30, 215, 96, 0.7); /* Smaller shadow */
+}
+
+.floating-icon:nth-child(2) {
+    background: linear-gradient(135deg, #8E2DE2, #4A00E0);
+    box-shadow: 0 4px 15px rgba(142, 45, 226, 0.5); /* Smaller shadow */
+}
+
+.floating-icon:nth-child(2):hover {
+    box-shadow: 0 6px 20px rgba(142, 45, 226, 0.7); /* Smaller shadow */
+}
+
+.stats-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem; /* Smaller margin */
+    font-size: 0.8rem; /* Smaller font */
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+@media (max-width: 1200px) {
+    .rapper-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem; /* Smaller title */
+    }
+    
+    .rapper-grid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+    
+    .floating-icons {
+        flex-direction: row;
+        bottom: 1rem;
+        right: 1rem;
+    }
+    
+    .floating-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+}
+
+/* Keep all your existing animations and decorative elements */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); } /* Smaller float */
+}
+
+.floating {
+    animation: float 4s ease-in-out infinite;
+}
+
+.corner-decoration {
+    position: absolute;
+    width: 150px; /* Smaller decoration */
+    height: 150px; /* Smaller decoration */
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.corner-1 {
+    top: -75px;
+    left: -75px;
+    border-color: transparent transparent rgba(30, 215, 96, 0.1) rgba(30, 215, 96, 0.1);
+}
+
+.corner-2 {
+    bottom: -75px;
+    right: -75px;
+    border-color: rgba(255, 85, 0, 0.1) rgba(255, 85, 0, 0.1) transparent transparent;
+}
+
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    background: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+/* SEARCH BAR STYLES */
+.search-container {
+    max-width: 600px; /* Wider search bar */
+    width: 90%; /* Takes 90% of parent width up to 600px */
+    margin: 0 auto;
+    position: relative;
+    margin-top: 60px;
+    margin-bottom: 100px;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 1.1rem 1.5rem; /* Comfortable padding */
+    border-radius: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.337);
+    background: rgba(20, 20, 20, 0.7);
+    color: white;
+    font-size: 1.1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+.search-bar:focus {
+    /* border-color: var(--secondary); */
+    box-shadow: 0 0 10px rgba(175, 175, 175, 0.4);
+    background: rgba(25, 25, 25, 0.8);
+}
+
+.search-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+/* .search-bar:focus + .search-icon {
+    color: var(--secondary);
+} */
+
+/* KICK ICON STYLES */
+.kick-profile {
+    position: absolute;
+    right: 2rem;
+    top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.kick-icon {
+    width: 36px;
+    height: 36px;
+    background: url('https://kick.com/favicon.ico') no-repeat center;
+    background-size: contain;
+    filter: drop-shadow(0 0 5px rgba(83, 252, 24, 0.5));
+    transition: all 0.3s ease;
+}
+
+.kick-username {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #53FC18;
+    font-size: 1.3rem;
+    text-shadow: 0 0 8px rgba(83, 252, 24, 0.5);
+    transition: all 0.3s ease;
+}
+
+.kick-profile:hover {
+    transform: translateY(-2px);
+}
+
+.kick-profile:hover .kick-icon {
+    filter: drop-shadow(0 0 8px rgba(83, 252, 24, 0.8));
+}
+
+.kick-profile:hover .kick-username {
+    color: #53FC18;
+    text-shadow: 0 0 12px rgba(83, 252, 24, 0.8);
+}
+
+/* HEADER STRUCTURE */
+.header-container {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-top: 0.5rem; /* Space for Kick profile */
+}
+
+h1 {
+    font-size: 3.5rem;
+    /* ... keep your existing h1 styles ... */
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
