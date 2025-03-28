@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Music note symbols
   const symbols = ['✧','♫', '♪', '♬','♕','✧', '♩', '♭','♕','✧','♫'];
   const particles = [];
-  const particleCount = 150; // Optimal for performance
+  const particleCount = 200; // Optimal for performance
   
   // Clean color palette
   const colors = [
@@ -24,10 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
       reset() {
           this.x = Math.random() * canvas.width;
           this.y = Math.random() * canvas.height;
-          this.speedX = Math.random() * 1.5 - 0.75; // Consistent speed
-          this.speedY = Math.random() * 1.5 - 0.75;
+          this.speedX = Math.random() * 3.5 - 1; // Consistent speed
+          this.speedY = Math.random() * 3.5 - 1;
           this.color = colors[Math.floor(Math.random() * colors.length)];
-          this.angle = Math.random() * Math.PI * 2; // Random starting rotation
+          this.angle = Math.random() * Math.PI * 5; // Random starting rotation
           this.rotationSpeed = Math.random() * 0.02 - 0.01; // Slow spin
       }
       
